@@ -13,6 +13,9 @@ class FeatureExtractor:
         base_model = InceptionResNetV2(weights = 'imagenet', include_top = False)
         self.model = Model(inputs= base_model.input, outputs = base_model.output)
 
+        # test run
+        self.model.predict(np.empty([1, 299, 299, 3]))
+
     def extract_image(self, img):
         """
         wrapper for self.extract_batch to extract deep features from one input image using InceptionResNetV2

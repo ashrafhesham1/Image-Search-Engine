@@ -16,7 +16,7 @@ A deep-learning-based image search engine that uses deep learning to extract ima
 
 ## Archticture diagram
 
-![Archticture diagram](./ISE%20Archticture.png)
+![Archticture diagram](./Analysis/ISE%20Archticture.png)
 
 ## How does it work
 

@@ -13,6 +13,7 @@ class Data:
     imgs_path = None # the path of the folder containing images
     features_path = None # the path of the folder containing features
     uploaded_path = None # the path of the folder containing uploaded images
+    test_path = None # the path of the folder containing test data
     index_path = None # the path of the folder containing index
    
     def __init__(self):
@@ -29,7 +30,8 @@ class Data:
         self.static_path = self.env.get('static_path')
         self.imgs_path = os.path.join(self.static_path, self.env.get('img_rel_path'))
         self.features_path = os.path.join(self.static_path, self.env.get('features_rel_path'))
-        self.uploaded_path = os.path.join(self.static_path, self.env.get('uploaded__rel_path'))
+        self.uploaded_path = os.path.join(self.static_path, self.env.get('uploaded_rel_path'))
+        self.test_path = os.path.join(self.static_path, self.env.get('test_rel_path'))
         self.index_path = self.env.get('index_path')
     
     def load_imgs(self,exclude_imgs_with_saved_features = False):
@@ -58,6 +60,19 @@ class Data:
 
         return img_map
     
+    def load_test_imgs(self):
+        img_paths_collection = [path for path in Path(self.test_path).glob('*jpg')]
+
+        # initalize dict in which the images will be saved
+        img_map = {}
+
+        #load the images
+        for img_path in img_paths_collection:
+            img_id = img_path.stem
+            img_map[img_id] = load_img(img_path)
+
+        return img_map
+
     def load_features(self, custom_features = None):
         """
         loads features from the features folder and return it as a hashmap that maps image id to its features

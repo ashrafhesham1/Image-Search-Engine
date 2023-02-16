@@ -2,6 +2,7 @@ from PIL import Image
 from datetime import datetime
 from flask import Flask, request, render_template
 from Data import Data
+import time
 
 from search import Search
 
@@ -18,6 +19,8 @@ def index():
             return
 
         # Save query image
+        st = time.time() 
+
         img = Image.open(file.stream)  # PIL image
         uploaded_img_path = data.uploaded_path+'/' +datetime.now().isoformat().replace(":", ".") + "_" + file.filename
         img.save(uploaded_img_path)
@@ -28,6 +31,8 @@ def index():
         paths = [data.imgs_path+'/'+str(id)+'.jpg' for id in ids]
         scores = [x for x in zip(dists,paths)]
 
+        et = time.time()
+        print(f'Excution time = {et - st} Seconds')
         return render_template('index.html',
                                query_path=uploaded_img_path,
                                scores=scores)

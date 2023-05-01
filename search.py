@@ -1,5 +1,5 @@
 from feature_extractor import FeatureExtractor
-from indexer import Index
+from Index import Index
 from tensorflow.keras.preprocessing import image
 from Data import Data
 

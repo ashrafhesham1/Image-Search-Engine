@@ -1,7 +1,7 @@
 import numpy as np
 from feature_extractor import FeatureExtractor
 from Data import Data, Preprocess
-from indexer import Index
+from Index import Index
 import warnings
 warnings.filterwarnings('ignore')
 
